@@ -1,0 +1,19 @@
+# Manipulación de datos
+pandas
+numpy
+
+# Visualización
+matplotlib
+
+# Trading / Backtesting
+ccxt          # Conexión a exchanges de criptomonedas (Binance, etc.)
+backtrader    # Framework de backtesting clásico
+
+# Configuración
+pyyaml        # Leer archivos .yaml de configuración
+
+# Logging
+loguru        # Logging bonito y estructurado
+
+# Testing
+pytest        # Framework de tests unitarios

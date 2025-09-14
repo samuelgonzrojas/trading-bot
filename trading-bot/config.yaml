@@ -1,0 +1,11 @@
+broker:
+  name: binance
+  api_key: "YOUR_API_KEY"
+  api_secret: "YOUR_API_SECRET"
+  testnet: true
+
+trading:
+  symbol: "BTC/USDT"
+  timeframe: "1h"
+  capital: 1000
+  risk_per_trade: 0.02
