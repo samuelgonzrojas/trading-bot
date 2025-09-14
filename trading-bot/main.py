@@ -1,5 +1,6 @@
 import yaml
 import pandas as pd
+import yfinance as yf
 from src.strategies.sma_crossover import SmaCrossoverStrategy
 
 
@@ -10,15 +11,27 @@ def load_config(path="/workspaces/trading-bot/trading-bot/config.yaml"):
 
 def main():
     config = load_config()
+    symbol = config["trading"]["symbol"]
+    timeframe = config["trading"]["timeframe"]
 
-    # 🔹 Simulación con datos ficticios
-    data = pd.DataFrame({"close": [100, 101, 102, 103, 102, 101, 99, 98, 97, 99, 101]})
+    # 🔹 Descarga datos históricos con yfinance
+    # Ajusta el periodo a lo que quieras probar: '1y', '6mo', etc.
+    data = yf.download(symbol, period="6mo", interval=timeframe)
 
+    if data.empty:
+        print("No se descargaron datos, revisa el símbolo o la conexión a internet.")
+        return
+
+    # Solo nos interesa la columna de cierre
+    df = data[["Close"]].rename(columns={"Close": "close"})
+
+    # 🔹 Aplicar estrategia SMA
     strategy = SmaCrossoverStrategy(short_window=3, long_window=5)
-    signals = strategy.generate_signals(data)
+    signals = strategy.generate_signals(df)
 
+    # 🔹 Mostrar resultados
     print("Señales generadas:")
-    print(signals[["close", "sma_short", "sma_long", "signal"]])
+    print(signals.tail(10))  # Últimas 10 filas
 
 
 if __name__ == "__main__":

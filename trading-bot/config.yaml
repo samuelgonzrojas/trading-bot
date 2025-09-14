@@ -1,11 +1,11 @@
 broker:
-  name: binance
-  api_key: "YOUR_API_KEY"
-  api_secret: "YOUR_API_SECRET"
+  name: demo
+  api_key: ""
+  api_secret: ""
   testnet: true
 
 trading:
-  symbol: "BTC/USDT"
-  timeframe: "1h"
+  symbol: "AAPL"      # símbolo de Yahoo Finance (Apple)
+  timeframe: "1d"     # '1d', '1h', '15m', etc.
   capital: 1000
   risk_per_trade: 0.02
