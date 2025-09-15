@@ -1,5 +1,6 @@
 from src.strategies.sma_crossover import SmaCrossoverStrategy
 from src.backtesting.backtester import Backtester
+from src.backtesting.plotter import plot_signals, plot_equity_curve
 import pandas as pd
 import yfinance as yf
 import yaml
@@ -15,14 +16,11 @@ def main():
     symbol = config["trading"]["symbol"]
     timeframe = config["trading"]["timeframe"]
 
-    # 📈 Descargar datos reales
+    # Descargar datos
     data = yf.download(symbol, period="6mo", interval=timeframe)
-
-    # Si devuelve MultiIndex, lo aplanamos
     if isinstance(data.columns, pd.MultiIndex):
-        data = data.swaplevel(axis=1)  # cambia orden (ticker primero)
+        data = data.swaplevel(axis=1)
         data = data[symbol]
-
     data = data.rename(columns={"Close": "close"})
 
     # Estrategia
@@ -38,6 +36,25 @@ def main():
 
     print("=== RESULTADOS DEL BACKTEST ===")
     print(backtester.summary())
+
+    # Exportar trades
+    filename = backtester.export_trades(
+        "/workspaces/trading-bot/trading-bot/trades.csv"
+    )
+    print(f"Operaciones guardadas en {filename}")
+
+    # Visualización
+    plot_signals(
+        signals,
+        results["trades"],
+        symbol=symbol,
+        filename="/workspaces/trading-bot/trading-bot/src/backtesting/signals.png",
+    )
+    plot_equity_curve(
+        results["trades"],
+        initial_capital=config["trading"]["capital"],
+        filename="/workspaces/trading-bot/trading-bot/src/backtesting/equity_curve.png",
+    )
 
 
 if __name__ == "__main__":
