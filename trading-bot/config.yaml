@@ -8,6 +8,6 @@ broker:
 
 trading:
   symbol: "EURUSD"
-  timeframe: "15m"     # '1d', '1h', '15m', etc.
+  timeframe: "1h"     # '1d', '1h', '15m', etc.
   capital: 1000
   risk_per_trade: 0.03

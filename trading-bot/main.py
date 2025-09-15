@@ -5,7 +5,7 @@ import pandas as pd
 import yaml
 from src.strategies.sma_crossover import SmaCrossoverStrategy
 from src.backtesting.backtester import Backtester
-from src.strategies.smaoptimicer import SMAOptimizer
+from src.utils.backtestoptimicer import StrategyOptimizer, RobustBacktester
 
 
 def load_config(path="trading-bot/config.yaml"):
@@ -71,30 +71,27 @@ def main():
     # Descargar datos
     data = get_data(symbol=symbol, timeframe=timeframe, n=500)
 
-    optimizer = SMAOptimizer(Backtester, initial_capital=1000, risk_per_trade=0.02)
-
-    # Probar medias rápidas 3 a 20 y lentas 30 a 100
-    results = optimizer.run(data, fast_range=range(3, 21), slow_range=range(30, 101))
-
-    print(results.head(10))  # top 10 combinaciones
-
-    # Estrategia SMA
-    strategy = SmaCrossoverStrategy(short_window=20, long_window=50)
-    signals = strategy.generate_signals(data)
-
-    # Backtesting
+    # Backtesting con parámetros ganadores
     backtester = Backtester(
         initial_capital=config["trading"]["capital"],
         risk_per_trade=config["trading"]["risk_per_trade"],
     )
-    results = backtester.run(signals)
+
+    # Ejecuta el backtest directamente sobre los datos descargados
+    results = backtester.run(
+        data,
+        # Estos valores son los que salieron de la optimización
+        fast_ema=10,
+        slow_ema=30,
+        rsi_overbought=75,
+        rsi_oversold=25,
+        atr_period=14,
+        stop_atr=2.0,
+        take_atr=2.0,
+    )
 
     print("=== RESULTADOS DEL BACKTEST ===")
     print(backtester.summary())
-
-    # Guardar CSV y gráficos
-    filename = backtester.export_trades("trading-bot/trades.csv")
-    print(f"Operaciones guardadas en {filename}")
 
     # Cerrar MT5
     mt5.shutdown()

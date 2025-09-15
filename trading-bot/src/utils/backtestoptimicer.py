@@ -1,18 +1,8 @@
 import pandas as pd
-
-# Parámetros ganadores
-BEST_PARAMS = {
-    "fast_ema": 10,
-    "slow_ema": 30,
-    "rsi_overbought": 75,
-    "rsi_oversold": 25,
-    "atr_period": 14,
-    "stop_atr": 2.0,
-    "take_atr": 2.0,
-}
+from itertools import product
 
 
-class Backtester:
+class RobustBacktester:
     def __init__(
         self,
         initial_capital=1000,
@@ -20,24 +10,12 @@ class Backtester:
         spread=0.0002,
         commission_per_lot=7.0,
         lot_size=100000,
-        rsi_period=14,
-        rsi_overbought=70,
-        rsi_oversold=30,
-        atr_period=14,
-        stop_atr=1.5,
-        take_atr=3.0,
     ):
         self.initial_capital = initial_capital
         self.risk_per_trade = risk_per_trade
         self.spread = spread
         self.commission_per_lot = commission_per_lot
         self.lot_size = lot_size
-        self.rsi_period = rsi_period
-        self.rsi_overbought = rsi_overbought
-        self.rsi_oversold = rsi_oversold
-        self.atr_period = atr_period
-        self.stop_atr = stop_atr
-        self.take_atr = take_atr
         self.results = None
         self.trades = []
 
@@ -73,100 +51,133 @@ class Backtester:
 
     def run(
         self,
-        data: pd.DataFrame,
-        fast_ema=None,
-        slow_ema=None,
-        rsi_overbought=None,
-        rsi_oversold=None,
-        atr_period=None,
-        stop_atr=None,
-        take_atr=None,
+        data,
+        fast_ema,
+        slow_ema,
+        rsi_period,
+        rsi_overbought,
+        rsi_oversold,
+        atr_period,
+        stop_atr,
+        take_atr,
     ):
 
-        # Si no se pasa nada, usar los mejores parámetros
-        fast_ema = fast_ema or BEST_PARAMS["fast_ema"]
-        slow_ema = slow_ema or BEST_PARAMS["slow_ema"]
-        rsi_overbought = rsi_overbought or BEST_PARAMS["rsi_overbought"]
-        rsi_oversold = rsi_oversold or BEST_PARAMS["rsi_oversold"]
-        atr_period = atr_period or BEST_PARAMS["atr_period"]
-        stop_atr = stop_atr or BEST_PARAMS["stop_atr"]
-        take_atr = take_atr or BEST_PARAMS["take_atr"]
-
-        # EMAs
         df = data.copy()
         df["ema_fast"] = df["close"].ewm(span=fast_ema, adjust=False).mean()
         df["ema_slow"] = df["close"].ewm(span=slow_ema, adjust=False).mean()
-        # RSI
-        df["rsi"] = self.compute_rsi(df, self.rsi_period)
-        # ATR
+        df["rsi"] = self.compute_rsi(df, rsi_period)
         df["atr"] = self.compute_atr(df, atr_period)
 
         capital = self.initial_capital
         position = 0
         entry_price = 0
         stop_loss = 0
-        take_profit_value = 0
+        take_profit = 0
 
         for date, row in df.iterrows():
             price = row["close"]
             rsi = row["rsi"]
             atr = row["atr"]
-            ema_fast_val = row["ema_fast"]
-            ema_slow_val = row["ema_slow"]
+            ema_fast = row["ema_fast"]
+            ema_slow = row["ema_slow"]
 
-            # Entrada en largo
-            if position == 0 and ema_fast_val > ema_slow_val and rsi < rsi_overbought:
+            # Entrada
+            if position == 0 and ema_fast > ema_slow and rsi < rsi_overbought:
                 risk_amount = capital * self.risk_per_trade
                 position = round(risk_amount / (atr * self.lot_size), 2)
                 if position <= 0:
                     continue
                 entry_price = price
                 stop_loss = price - stop_atr * atr
-                take_profit_value = price + take_atr * atr
-                self.trades.append(
-                    {"date": date, "type": "BUY", "price": price, "lots": position}
-                )
+                take_profit = price + take_atr * atr
 
-            # Salida de largo
+            # Salida
             elif position > 0:
                 exit_signal = False
-                if price <= stop_loss or price >= take_profit_value:
+                if price <= stop_loss or price >= take_profit:
                     exit_signal = True
-                elif ema_fast_val < ema_slow_val:  # cambio de tendencia
+                elif ema_fast < ema_slow:
                     exit_signal = True
 
                 if exit_signal:
                     adj_entry, adj_exit, commission = self.apply_costs(
-                        entry_price, price, position, is_buy=True
+                        entry_price, price, position
                     )
                     profit = (
                         adj_exit - adj_entry
                     ) * position * self.lot_size - commission
                     capital += profit
-                    self.trades.append(
-                        {
-                            "date": date,
-                            "type": "SELL",
-                            "price": price,
-                            "lots": position,
-                            "profit": profit,
-                        }
-                    )
                     position = 0
 
         self.results = {
             "final_capital": capital,
             "profit": capital - self.initial_capital,
-            "trades": self.trades,
         }
         return self.results
 
-    def summary(self):
-        if not self.results:
-            return "No se ha ejecutado el backtest."
-        return (
-            f"Capital inicial: {self.initial_capital}\n"
-            f"Capital final: {self.results['final_capital']:.2f}\n"
-            f"Ganancia neta: {self.results['profit']:.2f}\n"
-            f"Número de operaciones: {len(self.results['trades'])}"
+
+class StrategyOptimizer:
+    def __init__(self, data, backtester_class):
+        self.data = data
+        self.backtester_class = backtester_class
+        self.results = []
+
+    def optimize(
+        self,
+        fast_ema_range,
+        slow_ema_range,
+        rsi_period_range,
+        rsi_overbought_range,
+        rsi_oversold_range,
+        atr_period_range,
+        stop_atr_range,
+        take_atr_range,
+    ):
+
+        for fast, slow, rsi_p, rsi_ob, rsi_os, atr_p, stop_atr, take_atr in product(
+            fast_ema_range,
+            slow_ema_range,
+            rsi_period_range,
+            rsi_overbought_range,
+            rsi_oversold_range,
+            atr_period_range,
+            stop_atr_range,
+            take_atr_range,
+        ):
+
+            if fast >= slow or rsi_os >= rsi_ob:
+                continue
+
+            bt = self.backtester_class()
+            res = bt.run(
+                self.data,
+                fast_ema=fast,
+                slow_ema=slow,
+                rsi_period=rsi_p,
+                rsi_overbought=rsi_ob,
+                rsi_oversold=rsi_os,
+                atr_period=atr_p,
+                stop_atr=stop_atr,
+                take_atr=take_atr,
+            )
+
+            self.results.append(
+                {
+                    "fast_ema": fast,
+                    "slow_ema": slow,
+                    "rsi_period": rsi_p,
+                    "rsi_overbought": rsi_ob,
+                    "rsi_oversold": rsi_os,
+                    "atr_period": atr_p,
+                    "stop_atr": stop_atr,
+                    "take_atr": take_atr,
+                    "final_capital": res["final_capital"],
+                    "profit": res["profit"],
+                }
+            )
+
+        df_res = pd.DataFrame(self.results).sort_values(
+            by="final_capital", ascending=False
         )
+        df_res.to_csv("optimization_results.csv", index=False)
+        return df_res.head(10)  # top 10 combinaciones
