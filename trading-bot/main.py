@@ -1,11 +1,7 @@
-from math import log
-from os import path
 import MetaTrader5 as mt5
 import pandas as pd
 import yaml
-from src.strategies.sma_crossover import SmaCrossoverStrategy
 from src.backtesting.backtester import Backtester
-from src.utils.backtestoptimicer import StrategyOptimizer, RobustBacktester
 
 
 def load_config(path="trading-bot/config.yaml"):
@@ -14,7 +10,7 @@ def load_config(path="trading-bot/config.yaml"):
 
 
 def connect_mt5(name=None, account=None, password=None, server=None):
-    """Inicializa MT5 y conecta a la cuenta demo"""
+    """Conecta a MetaTrader5"""
     if not mt5.initialize(
         login=account,
         password=password,
@@ -22,6 +18,7 @@ def connect_mt5(name=None, account=None, password=None, server=None):
     ):
         print(f"Error al inicializar MT5: {mt5.last_error()}")
         return False
+
     if account and password and server:
         authorized = mt5.login(account, password, server=server)
         if authorized:
@@ -29,13 +26,12 @@ def connect_mt5(name=None, account=None, password=None, server=None):
         else:
             print("Error de login:", mt5.last_error())
             return False
-    else:
-        print("Conectado a MT5 (sin login)")
+
     return True
 
 
-def get_data(symbol="EURUSD", timeframe=mt5.TIMEFRAME_H1, n=500):
-    """Obtiene OHLC histórico desde MT5"""
+def get_data(symbol="EURUSD", timeframe=mt5.TIMEFRAME_H1, n=10000):
+    """Obtiene datos históricos desde MetaTrader5"""
     rates = mt5.copy_rates_from_pos(symbol, timeframe, 0, n)
     df = pd.DataFrame(rates)
     df["time"] = pd.to_datetime(df["time"], unit="s")
@@ -44,7 +40,7 @@ def get_data(symbol="EURUSD", timeframe=mt5.TIMEFRAME_H1, n=500):
     return df
 
 
-def main():
+if __name__ == "__main__":
     config = load_config()
     symbol = config["trading"]["symbol"]
     timeframe_str = config["trading"]["timeframe"]
@@ -80,7 +76,6 @@ def main():
     # Ejecuta el backtest directamente sobre los datos descargados
     results = backtester.run(
         data,
-        # Estos valores son los que salieron de la optimización
         fast_ema=10,
         slow_ema=30,
         rsi_overbought=75,
@@ -92,10 +87,3 @@ def main():
 
     print("=== RESULTADOS DEL BACKTEST ===")
     print(backtester.summary())
-
-    # Cerrar MT5
-    mt5.shutdown()
-
-
-if __name__ == "__main__":
-    main()
