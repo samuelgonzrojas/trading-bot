@@ -1,11 +1,13 @@
 broker:
-  name: demo
-  api_key: ""
-  api_secret: ""
-  testnet: true
+  name: Bot Santiago
+  login: 5040181463
+  password: "YrFx@k2c"
+  server: "MetaQuotes-Demo"
+
+
 
 trading:
-  symbol: "AAPL"      # símbolo de Yahoo Finance (Apple)
-  timeframe: "1d"     # '1d', '1h', '15m', etc.
+  symbol: "EURUSD"
+  timeframe: "15m"     # '1d', '1h', '15m', etc.
   capital: 1000
-  risk_per_trade: 0.3
+  risk_per_trade: 0.03
