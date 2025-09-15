@@ -24,9 +24,9 @@ class Backtester:
             # Entrar en largo
             if signal == 1 and position == 0:
                 # tamaño de la posición en función del riesgo
-                # risk_amount = capital * self.risk_per_trade
-                # position = risk_amount // price  # número de acciones enteras
-                position = capital // price  # comprar con todo el capital disponible
+                risk_amount = capital * self.risk_per_trade
+                position = risk_amount // price  # número de acciones enteras
+                # position = capital // price  # comprar con todo el capital disponible
                 entry_price = price
                 self.trades.append(
                     {"date": date, "type": "BUY", "price": price, "shares": position}

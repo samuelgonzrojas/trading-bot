@@ -8,4 +8,4 @@ trading:
   symbol: "AAPL"      # símbolo de Yahoo Finance (Apple)
   timeframe: "1d"     # '1d', '1h', '15m', etc.
   capital: 1000
-  risk_per_trade: 0.02
+  risk_per_trade: 0.3
