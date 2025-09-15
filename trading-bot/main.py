@@ -1,7 +1,8 @@
-import yaml
+from src.strategies.sma_crossover import SmaCrossoverStrategy
+from src.backtesting.backtester import Backtester
 import pandas as pd
 import yfinance as yf
-from src.strategies.sma_crossover import SmaCrossoverStrategy
+import yaml
 
 
 def load_config(path="/workspaces/trading-bot/trading-bot/config.yaml"):
@@ -14,24 +15,29 @@ def main():
     symbol = config["trading"]["symbol"]
     timeframe = config["trading"]["timeframe"]
 
-    # 🔹 Descarga datos históricos con yfinance
-    # Ajusta el periodo a lo que quieras probar: '1y', '6mo', etc.
+    # 📈 Descargar datos reales
     data = yf.download(symbol, period="6mo", interval=timeframe)
 
-    if data.empty:
-        print("No se descargaron datos, revisa el símbolo o la conexión a internet.")
-        return
+    # Si devuelve MultiIndex, lo aplanamos
+    if isinstance(data.columns, pd.MultiIndex):
+        data = data.swaplevel(axis=1)  # cambia orden (ticker primero)
+        data = data[symbol]
 
-    # Solo nos interesa la columna de cierre
-    df = data[["Close"]].rename(columns={"Close": "close"})
+    data = data.rename(columns={"Close": "close"})
 
-    # 🔹 Aplicar estrategia SMA
+    # Estrategia
     strategy = SmaCrossoverStrategy(short_window=3, long_window=5)
-    signals = strategy.generate_signals(df)
+    signals = strategy.generate_signals(data)
 
-    # 🔹 Mostrar resultados
-    print("Señales generadas:")
-    print(signals.tail(10))  # Últimas 10 filas
+    # Backtesting
+    backtester = Backtester(
+        initial_capital=config["trading"]["capital"],
+        risk_per_trade=config["trading"]["risk_per_trade"],
+    )
+    results = backtester.run(signals)
+
+    print("=== RESULTADOS DEL BACKTEST ===")
+    print(backtester.summary())
 
 
 if __name__ == "__main__":
