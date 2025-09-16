@@ -6,6 +6,6 @@ broker:
 
 trading:
   symbol: "EURUSD"
-  timeframe: "1h"
+  timeframe: "15m"
   capital: 1000
   risk_per_trade: 0.03

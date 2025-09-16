@@ -1,172 +1,141 @@
 import pandas as pd
-
-# Parámetros ganadores
-BEST_PARAMS = {
-    "fast_ema": 10,
-    "slow_ema": 30,
-    "rsi_overbought": 75,
-    "rsi_oversold": 25,
-    "atr_period": 14,
-    "stop_atr": 2.0,
-    "take_atr": 2.0,
-}
+import numpy as np
+import talib
+import logging
+from datetime import datetime
 
 
 class Backtester:
-    def __init__(
-        self,
-        initial_capital=1000,
-        risk_per_trade=0.02,
-        spread=0.0002,
-        commission_per_lot=7.0,
-        lot_size=100000,
-        rsi_period=14,
-        rsi_overbought=70,
-        rsi_oversold=30,
-        atr_period=14,
-        stop_atr=1.5,
-        take_atr=3.0,
-    ):
-        self.initial_capital = initial_capital
+    def __init__(self, strategy, initial_balance=1000, risk_per_trade=0.02):
+        """
+        Backtester simple para estrategias basadas en señales
+        Args:
+            strategy: objeto con método calculate_indicators(df) y generate_signals(df)
+            initial_balance: capital inicial
+            risk_per_trade: % riesgo por operación
+        """
+        self.strategy = strategy
+        self.initial_balance = initial_balance
+        self.balance = initial_balance
         self.risk_per_trade = risk_per_trade
-        self.spread = spread
-        self.commission_per_lot = commission_per_lot
-        self.lot_size = lot_size
-        self.rsi_period = rsi_period
-        self.rsi_overbought = rsi_overbought
-        self.rsi_oversold = rsi_oversold
-        self.atr_period = atr_period
-        self.stop_atr = stop_atr
-        self.take_atr = take_atr
-        self.results = None
+        self.equity_curve = []
         self.trades = []
 
-    @staticmethod
-    def compute_rsi(data, period=14):
-        delta = data["close"].diff()
-        gain = delta.clip(lower=0)
-        loss = -delta.clip(upper=0)
-        avg_gain = gain.rolling(period).mean()
-        avg_loss = loss.rolling(period).mean()
-        rs = avg_gain / avg_loss
-        rsi = 100 - (100 / (1 + rs))
-        return rsi
+        logging.basicConfig(
+            level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+        )
+        self.logger = logging.getLogger(__name__)
 
-    @staticmethod
-    def compute_atr(data, period=14):
-        high_low = data["high"] - data["low"]
-        high_close = (data["high"] - data["close"].shift()).abs()
-        low_close = (data["low"] - data["close"].shift()).abs()
-        tr = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
-        atr = tr.rolling(period).mean()
-        return atr
+    def run(self, df):
+        """
+        Ejecutar backtest sobre un DataFrame con OHLCV
+        """
+        df = self.strategy.calculate_indicators(df)
 
-    def apply_costs(self, entry_price, exit_price, lots, is_buy=True):
-        if is_buy:
-            entry_price += self.spread
-            exit_price -= self.spread
-        else:
-            entry_price -= self.spread
-            exit_price += self.spread
-        commission = self.commission_per_lot * lots
-        return entry_price, exit_price, commission
-
-    def run(
-        self,
-        data: pd.DataFrame,
-        fast_ema=None,
-        slow_ema=None,
-        rsi_overbought=None,
-        rsi_oversold=None,
-        atr_period=None,
-        stop_atr=None,
-        take_atr=None,
-    ):
-
-        # Si no se pasa nada, usar los mejores parámetros
-        fast_ema = fast_ema or BEST_PARAMS["fast_ema"]
-        slow_ema = slow_ema or BEST_PARAMS["slow_ema"]
-        rsi_overbought = rsi_overbought or BEST_PARAMS["rsi_overbought"]
-        rsi_oversold = rsi_oversold or BEST_PARAMS["rsi_oversold"]
-        atr_period = atr_period or BEST_PARAMS["atr_period"]
-        stop_atr = stop_atr or BEST_PARAMS["stop_atr"]
-        take_atr = take_atr or BEST_PARAMS["take_atr"]
-
-        # EMAs
-        df = data.copy()
-        df["ema_fast"] = df["close"].ewm(span=fast_ema, adjust=False).mean()
-        df["ema_slow"] = df["close"].ewm(span=slow_ema, adjust=False).mean()
-        # RSI
-        df["rsi"] = self.compute_rsi(df, self.rsi_period)
-        # ATR
-        df["atr"] = self.compute_atr(df, atr_period)
-
-        capital = self.initial_capital
-        position = 0
+        position = 0  # 0 = fuera, 1 = long, -1 = short
         entry_price = 0
         stop_loss = 0
-        take_profit_value = 0
+        take_profit = 0
 
-        for date, row in df.iterrows():
-            price = row["close"]
-            rsi = row["rsi"]
-            atr = row["atr"]
-            ema_fast_val = row["ema_fast"]
-            ema_slow_val = row["ema_slow"]
+        for i in range(50, len(df)):  # empezamos después de calcular indicadores
+            window = df.iloc[: i + 1]
+            signal = self.strategy.generate_signals(window)
 
-            # Entrada en largo
-            if position == 0 and ema_fast_val > ema_slow_val and rsi < rsi_overbought:
-                risk_amount = capital * self.risk_per_trade
-                position = round(risk_amount / (atr * self.lot_size), 2)
-                if position <= 0:
-                    continue
-                entry_price = price
-                stop_loss = price - stop_atr * atr
-                take_profit_value = price + take_atr * atr
-                self.trades.append(
-                    {"date": date, "type": "BUY", "price": price, "lots": position}
-                )
+            current = df.iloc[i]
 
-            # Salida de largo
-            elif position > 0:
-                exit_signal = False
-                if price <= stop_loss or price >= take_profit_value:
-                    exit_signal = True
-                elif ema_fast_val < ema_slow_val:  # cambio de tendencia
-                    exit_signal = True
+            # Si hay posición abierta, verificamos SL/TP
+            if position != 0:
+                if position == 1:  # Long
+                    if current["low"] <= stop_loss:
+                        self._close_trade(entry_price, stop_loss, "SL", current["time"])
+                        position = 0
+                    elif current["high"] >= take_profit:
+                        self._close_trade(
+                            entry_price, take_profit, "TP", current["time"]
+                        )
+                        position = 0
 
-                if exit_signal:
-                    adj_entry, adj_exit, commission = self.apply_costs(
-                        entry_price, price, position, is_buy=True
+                elif position == -1:  # Short
+                    if current["high"] >= stop_loss:
+                        self._close_trade(entry_price, stop_loss, "SL", current["time"])
+                        position = 0
+                    elif current["low"] <= take_profit:
+                        self._close_trade(
+                            entry_price, take_profit, "TP", current["time"]
+                        )
+                        position = 0
+
+            # Si no hay posición y aparece señal
+            if position == 0 and signal != 0:
+                atr = current["atr"]
+                risk_amount = self.balance * self.risk_per_trade
+                size = risk_amount / (atr * 2)  # lotaje simulado por ATR
+
+                if signal == 1:  # Long
+                    entry_price = current["close"]
+                    stop_loss = entry_price - (atr * 2)
+                    take_profit = entry_price + (atr * 3)
+                    position = 1
+                    self._open_trade(
+                        entry_price,
+                        stop_loss,
+                        take_profit,
+                        size,
+                        "LONG",
+                        current["time"],
                     )
-                    profit = (
-                        adj_exit - adj_entry
-                    ) * position * self.lot_size - commission
-                    capital += profit
-                    self.trades.append(
-                        {
-                            "date": date,
-                            "type": "SELL",
-                            "price": price,
-                            "lots": position,
-                            "profit": profit,
-                        }
+
+                elif signal == -1:  # Short
+                    entry_price = current["close"]
+                    stop_loss = entry_price + (atr * 2)
+                    take_profit = entry_price - (atr * 3)
+                    position = -1
+                    self._open_trade(
+                        entry_price,
+                        stop_loss,
+                        take_profit,
+                        size,
+                        "SHORT",
+                        current["time"],
                     )
-                    position = 0
 
-        self.results = {
-            "final_capital": capital,
-            "profit": capital - self.initial_capital,
-            "trades": self.trades,
-        }
-        return self.results
+            self.equity_curve.append(self.balance)
 
-    def summary(self):
-        if not self.results:
-            return "No se ha ejecutado el backtest."
-        return (
-            f"Capital inicial: {self.initial_capital}\n"
-            f"Capital final: {self.results['final_capital']:.2f}\n"
-            f"Ganancia neta: {self.results['profit']:.2f}\n"
-            f"Número de operaciones: {len(self.results['trades'])}"
+        self.logger.info(f"Backtest terminado. Balance final: {self.balance:.2f}")
+        return pd.DataFrame(self.trades), self.equity_curve
+
+    def _open_trade(self, entry, sl, tp, size, direction, time):
+        # self.logger.info(
+        #     f"Abrimos {direction} {size:.2f} a {entry:.5f}, SL {sl:.5f}, TP {tp:.5f}"
+        # )
+        self.trades.append(
+            {
+                "time": time,
+                "type": "ENTRY",
+                "direction": direction,
+                "price": entry,
+                "sl": sl,
+                "tp": tp,
+                "balance": self.balance,
+            }
+        )
+
+    def _close_trade(self, entry, exit_price, reason, time):
+        pnl = (
+            exit_price - entry
+            if reason == "TP" or reason == "SL" and entry < exit_price
+            else entry - exit_price
+        )
+        self.balance += pnl  # simplificación (no ajusta por lotaje real)
+        # self.logger.info(
+        #     f"🔒 Cerramos trade en {exit_price:.5f} por {reason}. Nuevo balance: {self.balance:.2f}"
+        # )
+        self.trades.append(
+            {
+                "time": time,
+                "type": "EXIT",
+                "reason": reason,
+                "price": exit_price,
+                "balance": self.balance,
+            }
         )
