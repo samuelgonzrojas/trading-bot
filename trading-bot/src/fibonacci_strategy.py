@@ -1,5 +1,5 @@
 import pandas as pd
-from src.indicators import add_indicators
+from indicators import add_indicators
 
 
 class FibonacciStrategy:

@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from src.mt5_connector import MT5Connector
-from src.fibonacci_strategy import FibonacciStrategy
+from mt5_connector import MT5Connector
+from fibonacci_strategy import FibonacciStrategy
 
 
 def run_backtest(initial_balance=1000):
