@@ -175,20 +175,20 @@ class FibonacciBot:
 
             # Comprobar meta diaria
             equity = mt5.account_info().equity
-            if (
+            """if (
                 equity - self.start_equity
             ) / self.start_equity >= self.daily_profit_target:
                 print(f"[{datetime.now()}] Meta diaria alcanzada. Deteniendo bot.")
                 self.close_all_positions()
-                break
+                break"""
 
-            if (
+            """if (
                 equity - self.start_equity
             ) / self.start_equity <= -0.01:  # pérdida del 1%
                 print(
                     f"[{datetime.now()}] Pérdida límite alcanzada. Cerrando todas las posiciones."
                 )
-                self.close_all_positions()
+                self.close_all_positions()"""
 
             df = self.get_data()
             fib, fib_range = self.calc_fibonacci(df)
