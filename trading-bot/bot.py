@@ -1,7 +1,11 @@
+from logging import config
 import MetaTrader5 as mt5
 import pandas as pd
 import time
+import yaml
 from datetime import datetime, timezone
+
+config = yaml.safe_load(open("trading-bot/config.yaml", "r"))
 
 
 class FibonacciBot:
@@ -10,20 +14,31 @@ class FibonacciBot:
         self.timeframe = timeframe
         self.risk = risk
         self.daily_profit_target = 0.02  # 2%
-        self.individual_profit_target = 0.005  # 0.5%
         self.account_balance = 0
         self.start_equity = 0
         self.max_open_positions = 5
         self.take_profit_multiplier = 0.5  # % del rango Fibonacci
         self.stop_loss_multiplier = 0.25  # % del rango Fibonacci
 
+        self.name = config["broker"]["name"]
+        self.login = config["broker"]["login"]
+        self.password = config["broker"]["password"]
+        self.server = config["broker"]["server"]
+
         print(f"FibonacciBot inicializado para {self.symbol}")
 
-    def connect(self):
-        if not mt5.initialize():
+    def connect(self, login=None, password=None, server=None):
+        if login is None:
+            login = self.login
+        if password is None:
+            password = self.password
+        if server is None:
+            server = self.server
+
+        if not mt5.initialize(login=login, password=password, server=server):
             print("Error al inicializar MetaTrader 5")
             raise RuntimeError("MT5 no se pudo inicializar")
-        print("Conexión a MetaTrader 5 establecida")
+        print("Conexión a MetaTrader 5 establecida. Cuenta:", login)
 
     def get_data(self, n=500):
         rates = mt5.copy_rates_from_pos(self.symbol, self.timeframe, 0, n)
@@ -68,65 +83,6 @@ class FibonacciBot:
     def count_open_positions(self):
         positions = mt5.positions_get(symbol=self.symbol)
         return len(positions) if positions else 0
-
-    def check_individual_profits(self):
-        """Monitorea posiciones individuales y cierra las que alcancen 0.5% de ganancia"""
-        positions = mt5.positions_get(symbol=self.symbol)
-        if not positions:
-            return
-
-        print("-" * 50)
-
-        for pos in positions:
-            # Pintar valor de la posición que se está revisando
-            print(
-                f"[{datetime.now()}] Revisando posición {pos.ticket} con profit {pos.profit:.2f}"
-            )
-
-            position_value = pos.volume * 100000 * pos.price_open
-            current_profit_pct = (pos.profit / position_value) * 100
-
-            if current_profit_pct >= (
-                self.individual_profit_target * 100
-            ):  # 0.5% de ganancia
-                # Cerrar la posición
-                tick = mt5.symbol_info_tick(self.symbol)
-                close_price = (
-                    tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
-                )
-
-                request = {
-                    "action": mt5.TRADE_ACTION_DEAL,
-                    "symbol": self.symbol,
-                    "volume": pos.volume,
-                    "type": (
-                        mt5.ORDER_TYPE_SELL
-                        if pos.type == mt5.POSITION_TYPE_BUY
-                        else mt5.ORDER_TYPE_BUY
-                    ),
-                    "position": pos.ticket,
-                    "price": close_price,
-                    "deviation": 100,
-                    "magic": 123456,
-                    "comment": "FibonacciBot - Ganancia 0.5%",
-                    "type_filling": mt5.ORDER_FILLING_IOC,
-                }
-
-                result = mt5.order_send(request)
-                if result.retcode == mt5.TRADE_RETCODE_DONE:
-                    print(
-                        f"[{datetime.now()}] Posición {pos.ticket} cerrada con ganancia: {current_profit_pct:.2f}%"
-                    )
-                else:
-                    print(
-                        f"[{datetime.now()}] Error cerrando posición {pos.ticket}, Retcode={result.retcode}"
-                    )
-
-        total_profit = sum(pos.profit for pos in positions)
-        print(
-            f"[{datetime.now()}] Beneficio total de posiciones abiertas: {total_profit:.2f}"
-        )
-        print("-" * 50)
 
     def place_order(self, action, lot, fib_range):
         tick = mt5.symbol_info_tick(self.symbol)
@@ -205,7 +161,7 @@ class FibonacciBot:
         )
 
         while True:
-            now = datetime.now(timezone.utc)
+            now = datetime.now()
 
             # Evitar operar entre 23h y 03h
             if now.hour >= 22 or now.hour < 2:
@@ -217,15 +173,13 @@ class FibonacciBot:
                 time.sleep(600)
                 continue
 
-            # NUEVA FUNCIONALIDAD: Monitorear ganancias individuales
-            self.check_individual_profits()
-
             # Comprobar meta diaria
             equity = mt5.account_info().equity
             if (
                 equity - self.start_equity
             ) / self.start_equity >= self.daily_profit_target:
                 print(f"[{datetime.now()}] Meta diaria alcanzada. Deteniendo bot.")
+                self.close_all_positions()
                 break
 
             if (
@@ -250,7 +204,7 @@ class FibonacciBot:
                         f"[{datetime.now()}] {open_positions} posiciones abiertas, no se abren más."
                     )
 
-            time.sleep(20)
+            time.sleep(1)
 
 
 if __name__ == "__main__":

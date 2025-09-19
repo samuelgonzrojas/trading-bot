@@ -4,6 +4,12 @@ broker:
   password: "YrFx@k2c"
   server: "MetaQuotes-Demo"
 
+broker_EURUSD:
+  name: Bot Lorenzo
+  login: 5040184369
+  password: "YrFx@k2c"
+  server: "MetaQuotes-Demo"
+
 trading:
   symbol: "EURUSD"
   timeframe: "15m"
