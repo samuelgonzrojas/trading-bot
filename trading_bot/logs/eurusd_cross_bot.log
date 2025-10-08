@@ -1,0 +1,80 @@
+2025-10-08 10:34:55,139 [INFO] Conexión establecida correctamente
+2025-10-08 10:34:55,140 [INFO] GoldTrendBot iniciado
+2025-10-08 10:34:55,150 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 10:34:55,150 [INFO] Comprobando señal de entrada...
+2025-10-08 10:34:55,155 [INFO] Precio actual: 1.17 | EMA9: 1.17 | EMA21: 1.17 | EMA50: 1.17
+2025-10-08 10:34:55,156 [INFO] Cruce bajista pero condiciones no válidas: bars=17, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 10:34:55,156 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 10:35:25,159 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 10:35:25,159 [INFO] Comprobando señal de entrada...
+2025-10-08 10:35:25,162 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 10:35:25,162 [INFO] Cruce bajista pero condiciones no válidas: bars=32, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 10:35:25,163 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 11:00:25,253 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 11:00:25,253 [INFO] Comprobando señal de entrada...
+2025-10-08 11:00:25,255 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 11:00:25,256 [INFO] Cruce bajista pero condiciones no válidas: bars=33, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 11:00:25,256 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 12:38:06,016 [INFO] Conexión establecida correctamente
+2025-10-08 12:38:06,017 [INFO] GoldTrendBot iniciado
+2025-10-08 12:38:06,024 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 12:38:06,025 [INFO] Comprobando señal de entrada...
+2025-10-08 12:38:06,036 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 12:38:06,039 [INFO] Cruce bajista pero condiciones no válidas: bars=32, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 12:38:06,040 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 12:38:44,702 [INFO] Conexión establecida correctamente
+2025-10-08 12:38:44,705 [INFO] GoldTrendBot iniciado
+2025-10-08 12:38:44,745 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 12:38:44,747 [INFO] Comprobando señal de entrada...
+2025-10-08 12:38:44,766 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 12:40:14,285 [INFO] Conexión establecida correctamente
+2025-10-08 12:40:14,288 [INFO] GoldTrendBot iniciado
+2025-10-08 12:40:14,311 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 12:40:14,312 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 12:40:14,313 [INFO] Comprobando señal de entrada...
+2025-10-08 12:40:14,335 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 12:40:14,342 [INFO] Último cruce detectado: bearish hace 32 velas.
+2025-10-08 12:40:14,343 [INFO] Cruce bajista pero condiciones no válidas: bars=32, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 12:40:14,347 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 12:40:44,351 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 12:40:44,352 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 12:40:44,353 [INFO] Comprobando señal de entrada...
+2025-10-08 12:40:44,357 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 12:40:44,359 [INFO] Último cruce detectado: bearish hace 34 velas.
+2025-10-08 12:40:44,359 [INFO] Cruce bajista pero condiciones no válidas: bars=34, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 12:40:44,360 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 13:00:14,432 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 13:00:14,433 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 13:00:14,433 [INFO] Comprobando señal de entrada...
+2025-10-08 13:00:14,435 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 13:00:14,436 [INFO] Último cruce detectado: bearish hace 35 velas.
+2025-10-08 13:00:14,436 [INFO] Cruce bajista pero condiciones no válidas: bars=35, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 13:00:14,437 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 14:00:14,647 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 14:00:14,647 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 14:00:14,648 [INFO] Comprobando señal de entrada...
+2025-10-08 14:00:14,650 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 14:00:14,651 [INFO] Último cruce detectado: bearish hace 36 velas.
+2025-10-08 14:00:14,651 [INFO] Cruce bajista pero condiciones no válidas: bars=36, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 14:00:14,651 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 15:00:14,861 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 15:00:14,862 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 15:00:14,862 [INFO] Comprobando señal de entrada...
+2025-10-08 15:00:14,864 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 15:00:14,865 [INFO] Último cruce detectado: bearish hace 37 velas.
+2025-10-08 15:00:14,865 [INFO] Cruce bajista pero condiciones no válidas: bars=37, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 15:00:14,866 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 16:00:15,082 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 16:00:15,082 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 16:00:15,083 [INFO] Comprobando señal de entrada...
+2025-10-08 16:00:15,084 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 16:00:15,086 [INFO] Último cruce detectado: bearish hace 38 velas.
+2025-10-08 16:00:15,086 [INFO] Cruce bajista pero condiciones no válidas: bars=38, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 16:00:15,086 [INFO] Ninguna señal válida encontrada en esta comprobación.
+2025-10-08 17:00:15,319 [INFO] Posiciones abiertas en EURUSD: 0
+2025-10-08 17:00:15,320 [INFO] Nueva vela detectada. Posiciones abiertas: 0
+2025-10-08 17:00:15,320 [INFO] Comprobando señal de entrada...
+2025-10-08 17:00:15,323 [INFO] Precio actual: 1.16 | EMA9: 1.16 | EMA21: 1.16 | EMA50: 1.17
+2025-10-08 17:00:15,324 [INFO] Último cruce detectado: bearish hace 38 velas.
+2025-10-08 17:00:15,324 [INFO] Cruce bajista pero condiciones no válidas: bars=38, EMA9<EMA21=True, precio<EMA50=True
+2025-10-08 17:00:15,324 [INFO] Ninguna señal válida encontrada en esta comprobación.

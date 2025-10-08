@@ -1,0 +1,203 @@
+2025-09-26 00:37:10,959 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 00:37:13,406 [INFO] Conexión establecida
+2025-09-26 00:37:13,406 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 00:37:13,408 [ERROR] Error: 'GoldPullbackBot' object has no attribute 'count_positions'
+2025-09-26 00:37:43,410 [ERROR] Error: 'GoldPullbackBot' object has no attribute 'count_positions'
+2025-09-26 00:37:59,804 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 00:38:02,250 [INFO] Conexión establecida
+2025-09-26 00:38:02,250 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 00:38:02,253 [INFO] Máximo de posiciones alcanzado
+2025-09-26 00:45:02,308 [INFO] Máximo de posiciones alcanzado
+2025-09-26 00:54:41,825 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 00:54:44,472 [INFO] Conexión establecida
+2025-09-26 00:54:44,472 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 00:54:44,480 [INFO] Máximo de posiciones alcanzado
+2025-09-26 00:55:44,486 [INFO] Máximo de posiciones alcanzado
+2025-09-26 00:59:59,508 [INFO] Máximo de posiciones alcanzado
+2025-09-26 01:14:59,594 [INFO] Máximo de posiciones alcanzado
+2025-09-26 01:29:59,677 [INFO] Máximo de posiciones alcanzado
+2025-09-26 01:44:59,764 [INFO] Máximo de posiciones alcanzado
+2025-09-26 01:59:59,848 [INFO] Máximo de posiciones alcanzado
+2025-09-26 02:14:59,935 [INFO] Máximo de posiciones alcanzado
+2025-09-26 02:30:00,024 [INFO] Máximo de posiciones alcanzado
+2025-09-26 02:45:00,106 [INFO] Máximo de posiciones alcanzado
+2025-09-26 03:00:00,190 [INFO] Máximo de posiciones alcanzado
+2025-09-26 03:15:00,277 [INFO] Máximo de posiciones alcanzado
+2025-09-26 03:30:00,360 [INFO] Máximo de posiciones alcanzado
+2025-09-26 03:45:00,446 [INFO] Máximo de posiciones alcanzado
+2025-09-26 04:00:00,528 [INFO] Máximo de posiciones alcanzado
+2025-09-26 04:18:15,632 [INFO] Máximo de posiciones alcanzado
+2025-09-26 04:30:00,697 [INFO] Máximo de posiciones alcanzado
+2025-09-26 04:45:00,780 [INFO] Máximo de posiciones alcanzado
+2025-09-26 05:00:03,228 [INFO] Máximo de posiciones alcanzado
+2025-09-26 05:15:03,314 [INFO] Máximo de posiciones alcanzado
+2025-09-26 05:30:03,397 [INFO] Máximo de posiciones alcanzado
+2025-09-26 05:45:03,479 [INFO] Máximo de posiciones alcanzado
+2025-09-26 06:00:03,563 [INFO] Máximo de posiciones alcanzado
+2025-09-26 06:15:03,649 [INFO] Máximo de posiciones alcanzado
+2025-09-26 06:30:03,735 [INFO] Máximo de posiciones alcanzado
+2025-09-26 06:45:03,820 [INFO] Máximo de posiciones alcanzado
+2025-09-26 07:00:03,903 [INFO] Máximo de posiciones alcanzado
+2025-09-26 07:15:03,987 [INFO] Máximo de posiciones alcanzado
+2025-09-26 07:30:04,071 [INFO] Máximo de posiciones alcanzado
+2025-09-26 07:45:04,158 [INFO] Máximo de posiciones alcanzado
+2025-09-26 08:00:04,244 [INFO] Máximo de posiciones alcanzado
+2025-09-26 08:15:04,331 [INFO] Máximo de posiciones alcanzado
+2025-09-26 08:30:04,413 [INFO] Máximo de posiciones alcanzado
+2025-09-26 08:45:04,496 [INFO] Máximo de posiciones alcanzado
+2025-09-26 09:00:04,583 [INFO] Máximo de posiciones alcanzado
+2025-09-26 09:15:04,667 [INFO] Máximo de posiciones alcanzado
+2025-09-26 09:30:04,753 [INFO] Máximo de posiciones alcanzado
+2025-09-26 09:45:04,837 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:00:04,920 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:15:05,003 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:17:45,699 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 10:17:48,035 [INFO] Conexión establecida
+2025-09-26 10:17:48,044 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 10:17:48,053 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:18:48,064 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:21:26,208 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 10:21:28,521 [INFO] Conexión establecida
+2025-09-26 10:21:28,524 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 10:21:28,537 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:30:13,641 [INFO] Máximo de posiciones alcanzado
+2025-09-26 10:45:13,806 [INFO] Máximo de posiciones alcanzado
+2025-09-26 11:00:13,986 [INFO] Máximo de posiciones alcanzado
+2025-09-26 11:21:35,959 [INFO] PULLBACK ENTRY: Precio 3749.22 | EMA20: 3748.36 | Distancia: $0.86
+2025-09-26 11:21:35,964 [ERROR] Error: 10027 - AutoTrading disabled by client
+2025-09-26 11:25:08,142 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 11:25:11,300 [INFO] Conexión establecida
+2025-09-26 11:25:11,300 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 11:25:11,315 [INFO] Máximo de posiciones alcanzado
+2025-09-26 11:25:26,320 [INFO] Máximo de posiciones alcanzado
+2025-09-26 11:39:29,946 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 11:39:31,791 [INFO] Conexión establecida
+2025-09-26 11:39:31,791 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 11:39:31,804 [INFO] Máximo de posiciones alcanzado
+2025-09-26 11:42:55,605 [INFO] PULLBACK ENTRY: Precio 3749.22 | EMA20: 3748.46 | Distancia: 0.02%
+2025-09-26 11:42:59,589 [INFO] COMPRA a 3748.93 | SL: 3746.68 | TP: 3752.31 | Risk:Reward 1:1.5
+2025-09-26 11:48:24,083 [INFO] SALIDA temprana EMA8: Pos 4868150523 cerrada a 3749.51
+2025-09-26 11:48:24,091 [INFO] PULLBACK ENTRY: Precio 3749.51 | EMA20: 3748.57 | Distancia: 0.02%
+2025-09-26 11:48:24,160 [INFO] COMPRA a 3749.66 | SL: 3746.88 | TP: 3753.83 | Risk:Reward 1:1.5
+2025-09-26 11:54:24,224 [INFO] SALIDA temprana EMA8: Pos 4868192147 cerrada a 3749.61
+2025-09-26 11:54:55,895 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 11:54:57,649 [INFO] Conexión establecida
+2025-09-26 11:54:57,649 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 11:54:57,654 [INFO] Máximo de posiciones alcanzado
+2025-09-26 11:55:12,704 [INFO] SALIDA temprana EMA8: Pos 53323136942 cerrada a 3749.36
+2025-09-26 11:55:12,707 [ERROR] Error: 'EMA8'
+2025-09-26 11:56:00,903 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 11:56:03,229 [INFO] Conexión establecida
+2025-09-26 11:56:03,230 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 12:00:03,277 [INFO] PULLBACK ENTRY: Precio 3751.43 | EMA20: 3749.09 | Distancia: 0.06%
+2025-09-26 12:00:03,332 [INFO] COMPRA a 3751.58 | SL: 3747.58 | TP: 3757.58 | Risk:Reward 1:1.5
+2025-09-26 12:05:18,386 [INFO] TRAILING activado: Pos 4868306828 | Nuevo SL: 3752.34
+2025-09-26 12:05:33,439 [INFO] BREAKEVEN activado: Pos 4868306828 | SL: 3752.58
+2025-09-26 12:13:44,229 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 12:13:46,080 [INFO] Conexión establecida
+2025-09-26 12:13:46,080 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 12:13:46,087 [INFO] PULLBACK ENTRY: Precio 3753.24 | EMA20: 3749.27 | EMA8: 3750.80 | Distancia: 0.11%
+2025-09-26 12:13:46,137 [INFO] COMPRA a 3753.40 | SL: 3747.65 | TP: 3762.02 | Risk:Reward 1:1.5
+2025-09-26 12:19:01,140 [INFO] Máximo de posiciones alcanzado
+2025-09-26 12:30:01,309 [INFO] SALIDA temprana EMA8: Pos 53433176574 cerrada a 3749.49
+2025-09-26 12:49:44,607 [INFO] GoldPullbackBot inicializado - EMA20 M15 Strategy
+2025-09-26 12:49:49,151 [INFO] Conexión establecida
+2025-09-26 12:49:49,151 [INFO] GoldPullbackBot iniciado - Esperando pullbacks a EMA20...
+2025-09-26 12:56:42,164 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 12:56:44,372 [INFO] Conexión establecida
+2025-09-26 12:58:35,728 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 12:58:37,952 [INFO] Conexión establecida
+2025-09-26 12:58:37,970 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:11:18,984 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:11:21,333 [INFO] Conexión establecida
+2025-09-26 14:11:21,333 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:21:59,962 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:22:02,189 [INFO] Conexión establecida
+2025-09-26 14:22:02,189 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:22:02,198 [INFO] PULLBACK ENTRY: Precio 3750.37 | EMA20: 3747.64 | EMA8: 3749.25 | Dist: 0.07% | 
+2025-09-26 14:22:02,266 [INFO] COMPRA a 3750.77 | SL: 3748.05 | TP: 3754.85 | Risk: $2.72 | R:R 1:1.5
+2025-09-26 14:22:02,279 [INFO] Esperando 5 minutos antes de nueva entrada...
+2025-09-26 14:29:39,625 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:29:42,194 [INFO] Conexión establecida
+2025-09-26 14:29:42,194 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:30:57,280 [INFO] BREAKEVEN: Pos 53434471958 | SL: 3751.77
+2025-09-26 14:36:00,063 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:36:01,963 [ERROR] Error al inicializar MetaTrader 5
+2025-09-26 14:36:08,975 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:36:10,882 [ERROR] Error al inicializar MetaTrader 5
+2025-09-26 14:39:00,375 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:39:02,712 [INFO] Conexión establecida
+2025-09-26 14:39:02,713 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:39:02,721 [INFO] PULLBACK ENTRY: Precio 3753.05 | EMA20: 3749.72 | EMA8: 3750.45 | Dist: 0.09% | 
+2025-09-26 14:39:02,793 [ERROR] Error inesperado: name 'risk' is not defined
+2025-09-26 14:42:16,427 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:42:18,764 [INFO] Conexión establecida
+2025-09-26 14:42:18,769 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:48:18,906 [INFO] BREAKEVEN: Pos 53434718807 | SL: 3754.11
+2025-09-26 14:49:17,459 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 14:49:19,781 [INFO] Conexión establecida
+2025-09-26 14:49:19,786 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 14:49:19,800 [INFO] PULLBACK ENTRY: Precio 3754.26 | EMA20: 3750.02 | EMA8: 3750.97 | Dist: 0.11% | 
+2025-09-26 14:49:19,852 [INFO] COMPRA a 3754.40 | SL: 3745.83 | TP: 3756.51 | ATR: 4.27
+2025-09-26 14:49:19,852 [INFO] Esperando 5 minutos antes de nueva entrada...
+2025-09-26 15:56:35,603 [INFO] PULLBACK ENTRY: Precio 3758.07 | EMA20: 3753.14 | EMA8: 3755.93 | Dist: 0.13% | 
+2025-09-26 15:56:35,793 [INFO] COMPRA a 3758.22 | SL: 3747.40 | TP: 3762.44 | ATR: 6.02
+2025-09-26 15:56:35,794 [INFO] Esperando 5 minutos antes de nueva entrada...
+2025-09-26 16:00:34,052 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 16:00:36,388 [INFO] Conexión establecida
+2025-09-26 16:00:36,388 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 16:00:36,412 [INFO] PULLBACK ENTRY: Precio 3763.46 | EMA20: 3754.58 | EMA8: 3758.30 | Dist: 0.24% | 
+2025-09-26 16:00:36,476 [INFO] COMPRA a 3763.62 | SL: 3749.04 | TP: 3763.64 | ATR: 5.84
+2025-09-26 16:11:51,766 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 16:11:54,114 [INFO] Conexión establecida
+2025-09-26 16:11:54,115 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 16:11:54,124 [INFO] PULLBACK ENTRY: Precio 3750.37 | EMA20: 3747.64 | EMA8: 3749.25 | Dist: 0.07% | 
+2025-09-26 16:11:54,131 [ERROR] Error inesperado: 'GoldPullbackBot' object has no attribute 'sl_atr_mult'
+2025-09-26 16:12:56,328 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 16:12:58,671 [INFO] Conexión establecida
+2025-09-26 16:12:58,671 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 16:53:06,701 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 16:53:09,152 [INFO] Conexión establecida
+2025-09-26 16:53:09,152 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 16:53:09,176 [ERROR] Error inesperado: name 'ema20_prev' is not defined
+2025-09-26 16:55:57,334 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 16:55:59,685 [INFO] Conexión establecida
+2025-09-26 16:55:59,687 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 18:13:59,014 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 18:15:40,604 [ERROR] Error al inicializar MetaTrader 5
+2025-09-26 18:15:49,205 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 18:16:00,031 [INFO] Conexión establecida
+2025-09-26 18:16:00,032 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-26 20:09:18,040 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-26 20:09:18,059 [INFO] Conexión establecida
+2025-09-26 20:09:18,059 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-28 23:46:39,588 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-28 23:46:47,320 [INFO] Conexión establecida
+2025-09-28 23:46:47,321 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-29 14:21:57,928 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-29 14:22:01,650 [INFO] Conexión establecida
+2025-09-29 14:22:01,650 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-29 17:13:28,785 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-29 17:13:33,123 [INFO] Conexión establecida
+2025-09-29 17:13:33,124 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-29 17:13:48,283 [INFO] PULLBACK ENTRY: Precio 3824.66 | EMA20: 3822.36 | EMA8: 3824.74 | Dist: 0.06% | 
+2025-09-29 17:13:48,347 [INFO] COMPRA a 3824.82 | SL: 3817.03 | TP: 3840.40 | ATR: 7.79
+2025-09-29 17:16:18,462 [INFO] SALIDA por debilidad: Pos 53450626353 | Profit: $-1.70
+2025-09-29 17:52:38,722 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-29 17:52:40,635 [INFO] Conexión establecida
+2025-09-29 17:52:40,635 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-29 18:00:10,752 [INFO] PULLBACK ENTRY: Precio 3830.26 | EMA20: 3825.22 | EMA8: 3828.20 | Dist: 0.13% | 
+2025-09-29 18:00:10,801 [INFO] COMPRA a 3830.41 | SL: 3823.26 | TP: 3844.72 | ATR: 7.15
+2025-09-29 18:45:11,462 [INFO] SALIDA por debilidad: Pos 53451311663 | Profit: $-9.10
+2025-09-29 18:45:11,464 [INFO] PULLBACK ENTRY: Precio 3828.59 | EMA20: 3826.52 | EMA8: 3828.84 | Dist: 0.05% | 
+2025-09-29 18:45:11,511 [INFO] COMPRA a 3828.74 | SL: 3822.43 | TP: 3841.36 | ATR: 6.31
+2025-09-29 18:45:26,561 [INFO] SALIDA por debilidad: Pos 53451820035 | Profit: $-0.05
+2025-09-29 18:57:44,601 [INFO] GoldPullbackBot inicializado - EMA20/EMA8 Strategy Optimizada
+2025-09-29 18:57:46,540 [INFO] Conexión establecida
+2025-09-29 18:57:46,540 [INFO] GoldPullbackBot OPTIMIZADO iniciado - EMA20/EMA8 Strategy
+2025-09-29 18:58:01,577 [INFO] PULLBACK ENTRY: Precio 3830.14 | EMA20: 3826.67 | EMA8: 3829.19 | Dist: 0.09% | 
+2025-09-29 18:58:01,635 [INFO] COMPRA a 3830.29 | SL: 3823.85 | TP: 3843.18 | ATR: 6.44
+2025-09-29 19:45:03,737 [INFO] PULLBACK ENTRY: Precio 3828.53 | EMA20: 3827.49 | EMA8: 3828.61 | Dist: 0.03% | 
+2025-09-29 19:45:03,791 [INFO] COMPRA a 3828.68 | SL: 3824.13 | TP: 3837.79 | ATR: 4.55
+2025-09-29 20:30:04,350 [INFO] PULLBACK ENTRY: Precio 3829.98 | EMA20: 3828.10 | EMA8: 3829.01 | Dist: 0.05% | 
+2025-09-29 20:30:04,414 [INFO] COMPRA a 3830.13 | SL: 3825.91 | TP: 3838.58 | ATR: 4.22
